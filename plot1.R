@@ -1,7 +1,6 @@
 # ExData_Plotting1 assignment
 library(data.table)
 library(lubridate)
-library(strptime)
 library(dplyr)
 
 # data url - Electric power consumption for one house over 3 years from the UC Irvine Machine Learning Repo
