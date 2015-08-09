@@ -1,7 +1,6 @@
 # ExData_Plotting1 assignment
 library(data.table)
 library(lubridate)
-library(strptime)
 library(dplyr)
 
 # data url - Electric power consumption for one house over 3 years from the UC Irvine Machine Learning Repo
@@ -58,17 +57,17 @@ householdPowerConsumption <- getDataSetWithin(zipFileName, "household_power_cons
 setkey(householdPowerConsumption, Date)
 
 #mutate into Dates in order to make comparisons work.
-householdPowerConsumption <- mutate(householdPowerConsumption, Date = dmy(Date)) %>% filter(Date %between% c("1/2/2007", "2/2/2007")) 
+householdPowerConsumption <- 
+        mutate(householdPowerConsumption,  Time = dmy_hms(paste(Date, Time)), Date = dmy(Date)) %>% filter(Date %between% c(dmy("1/2/2007"), dmy("2/2/2007"))) 
 
 # 3.) Plot 2
 #select(householdPowerConsumption, Global_active_power)
-gap <- select(householdPowerConsumption,Global_active_power) %>% filter(!is.na(Global_active_power))
+gap <- select(householdPowerConsumption,Date,Time,Global_active_power) %>% filter(!is.na(Global_active_power)) %>% mutate(weekday = wday(Date, label=T))
 
 png(filename = "Plot2.png", width = 480, height = 480)
-hist(gap$Global_active_power, 
-     xlab="Global Active Power (kilowatts)", 
-     ylab="Frequency",
-     main="Global Active Power",
-     col="red")
-
+with(gap, 
+     plot(Global_active_power ~ Time, 
+          type="l",
+          ylab="Global Active Power (kilowatts)",
+          xlab=""))
 dev.off()
