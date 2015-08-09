@@ -1,3 +1,15 @@
+## Instructions
+
+The code for each plot is stored in the R script by the same name:
+plot1.R generates Plot1.png, etc.
+
+1) create a clean directory and download the script to that directory.
+2) type the command: source("plot1.R") to generate the first of 4 plots.
+3) review the resulting Plot1.png file
+4) repeat 2 & 3 for each of the 4 plots
+
+Description of the dataset and assignment is as follows:
+
 ## Introduction
 
 This assignment uses data from
@@ -111,4 +123,5 @@ The four plots that you will need to construct are shown below.
 ### Plot 4
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
+
 
